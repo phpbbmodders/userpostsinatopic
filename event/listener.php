@@ -23,7 +23,7 @@ class listener implements EventSubscriberInterface
 
 	/** @var \phpbb\db\driver\driver */
 	protected $db;
-	
+
 	/** @var \phpbb\template\template */
 	protected $template;
 
@@ -40,7 +40,7 @@ class listener implements EventSubscriberInterface
 	* Constructor
 	*
 	* @param \phpbb\auth\auth					$auth			Auth object
-	* @param \phpbb\db\driver\driver			$db				Database object	
+	* @param \phpbb\db\driver\driver			$db				Database object
 	* @param \phpbb\template\template           $template       Template object
 	* @param \phpbb\user                        $user           User object
 	* @param string                             $root_path      phpBB root path
@@ -69,7 +69,7 @@ class listener implements EventSubscriberInterface
 			'core.viewtopic_assign_template_vars_before'	=> 'get_user_post_count',
 			'core.viewtopic_modify_page_title'		=> 'add_user_lang',
 			'core.viewtopic_cache_user_data'			=> 'viewtopic_cache_user_data',
-			'core.viewtopic_cache_guest_data'			=> 'viewtopic_cache_guest_data',			
+			'core.viewtopic_cache_guest_data'			=> 'viewtopic_cache_guest_data',
 			'core.viewtopic_modify_post_row'		=> 'display_post_count',
 		);
 	}
@@ -80,8 +80,8 @@ class listener implements EventSubscriberInterface
 		$topic_id = $event['topic_id'];
 
 		$sql = 'SELECT poster_id, COUNT(post_id) AS postnum
-					FROM ' . POSTS_TABLE . ' 
-					WHERE topic_id = ' . $topic_id . ' 
+					FROM ' . POSTS_TABLE . '
+					WHERE topic_id = ' . $topic_id . '
 					GROUP BY poster_id';
 
 		$result = $this->db->sql_query($sql);
@@ -92,7 +92,7 @@ class listener implements EventSubscriberInterface
 		}
 		$this->db->sql_freeresult($result);
 	}
-	
+
 	public function add_user_lang()
 	{
 		$this->user->add_lang_ext('rmcgirr83/userpostsinatopic', 'common');
