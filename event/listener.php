@@ -67,10 +67,10 @@ class listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.viewtopic_assign_template_vars_before'	=> 'get_user_post_count',
-			'core.viewtopic_modify_page_title'		=> 'add_user_lang',
-			'core.viewtopic_cache_user_data'			=> 'viewtopic_cache_user_data',
-			'core.viewtopic_cache_guest_data'			=> 'viewtopic_cache_guest_data',
-			'core.viewtopic_modify_post_row'		=> 'display_post_count',
+			'core.viewtopic_modify_page_title'				=> 'add_user_lang',
+			'core.viewtopic_cache_user_data'				=> 'viewtopic_cache_data',
+			'core.viewtopic_cache_guest_data'				=> 'viewtopic_cache_data',
+			'core.viewtopic_modify_post_row'				=> 'display_post_count',
 		);
 	}
 
@@ -99,28 +99,13 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Update viewtopic user data
+	* Update viewtopic data
 	*
 	* @param object $event The event object
 	* @return null
 	* @access public
 	*/
-	public function viewtopic_cache_user_data($event)
-	{
-		$poster_id = $event['poster_id'];
-		$topic_array = $event['user_cache_data'];
-		$topic_array['user_posts_in_topic'] = $this->data[$poster_id];
-		$event['user_cache_data'] = $topic_array;
-	}
-
-	/**
-	* Update viewtopic guest data
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
-	public function viewtopic_cache_guest_data($event)
+	public function viewtopic_cache_data($event)
 	{
 		$poster_id = $event['poster_id'];
 		$topic_array = $event['user_cache_data'];
@@ -133,7 +118,7 @@ class listener implements EventSubscriberInterface
 		$topic_id = $event['topic_data']['topic_id'];
 		$poster_id = $event['poster_id'];
 		$post_count = $event['user_poster_data']['user_posts_in_topic'];
-		if ($this->auth->acl_get('u_search'))
+		if ($this->auth->acl_get('u_search') && !empty($post_count))
 		{
 			$event['post_row'] = array_merge($event['post_row'], array(
 				'POSTER_POST_COUNT'			=> $post_count,
