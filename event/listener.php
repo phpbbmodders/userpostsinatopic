@@ -122,7 +122,7 @@ class listener implements EventSubscriberInterface
 		{
 			$event['post_row'] = array_merge($event['post_row'], array(
 				'POSTER_POST_COUNT'			=> $post_count,
-				'U_POSTS_VIEWTOPIC_INTO'   => append_sid("{$this->root_path}search.$this->php_ext", "author_id=$poster_id&amp;t=$topic_id&amp;sr=posts"),
+				'U_POSTS_VIEWTOPIC_INTO'	=> append_sid("{$this->root_path}search.$this->php_ext", "author_id=$poster_id&amp;t=$topic_id&amp;sr=posts"),
 			));
 		}
 	}
