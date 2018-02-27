@@ -82,6 +82,7 @@ class listener implements EventSubscriberInterface
 		$sql = 'SELECT poster_id, COUNT(post_id) AS postnum
 					FROM ' . POSTS_TABLE . '
 					WHERE topic_id = ' . $topic_id . '
+					AND poster_id <> ' . ANONYMOUS . '
 					GROUP BY poster_id';
 
 		$result = $this->db->sql_query($sql);
@@ -122,7 +123,7 @@ class listener implements EventSubscriberInterface
 		{
 			$event['post_row'] = array_merge($event['post_row'], array(
 				'POSTER_POST_COUNT'			=> $post_count,
-				'U_POSTS_VIEWTOPIC_INTO'   => append_sid("{$this->root_path}search.$this->php_ext", "author_id=$poster_id&amp;t=$topic_id&amp;sr=posts"),
+				'U_POSTS_VIEWTOPIC_INTO'	=> append_sid("{$this->root_path}search.$this->php_ext", "author_id=$poster_id&amp;t=$topic_id&amp;sr=posts"),
 			));
 		}
 	}
