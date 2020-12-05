@@ -2,8 +2,6 @@
 
 This extension users, if so authed to search, to be able to click on a link within a topic on a user and see all the posts from that user that are within the topic.
 
-[![Build Status](https://travis-ci.com/rmcgirr83/userpostsinatopic.svg?branch=master)](https://travis-ci.com/rmcgirr83/userpostsinatopic)
-
 ## Requirements
 * phpBB 3.1.0-a2 or higher
 * PHP 5.3.3 or higher
