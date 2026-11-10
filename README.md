@@ -3,8 +3,8 @@
 This extension users, if so authed to search, to be able to click on a link within a topic on a user and see all the posts from that user that are within the topic.
 
 ## Requirements
-* phpBB 3.1.0-a2 or higher
-* PHP 5.3.3 or higher
+* phpBB 3.3.19 or later
+* PHP 8.1 or higher
 
 ## Installation
 1. Download the repository ZIP and unzip it.
